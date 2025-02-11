@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Find Employee</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    .form-container {
+      width: 350px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body class="d-flex align-items-center justify-content-center vh-100">
+<div class="form-container p-4 border rounded bg-light">
+  <div class="d-flex justify-content-between">
+    <h3>Find Employee</h3>
+    <a href="/" class="text-danger text-decoration-none fs-3">❌</a>
+  </div>
+  <form th:action="@{/findEmployee}" th:object="${employee}" method="post">
+    <div class="mb-2">
+      <label>Enter Employee ID:</label>
+      <input type="text" class="form-control" th:field="*{id}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Find</button>
+  </form>
+
+  <hr>
+
+  <div th:if="${foundEmployee}">
+    <h4>Employee Details</h4>
+    <p><strong>ID:</strong> <span th:text="${foundEmployee.id}"></span></p>
+    <p><strong>First Name:</strong> <span th:text="${foundEmployee.firstName}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${foundEmployee.lastName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${foundEmployee.emailId}"></span></p>
+  </div>
+
+  <div th:if="${foundEmployee == null}">
+    <p class="text-danger">Employee not found.</p>
+  </div>
+</div>
+</body>
+</html>

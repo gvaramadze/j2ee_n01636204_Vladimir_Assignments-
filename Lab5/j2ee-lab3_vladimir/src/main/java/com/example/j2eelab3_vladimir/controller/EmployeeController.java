@@ -52,11 +52,11 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/update/{id}")
-    public String updateEmployee(@PathVariable Long id, @Valid @ModelAttribute("employee") Employee updatedEmployee, BindingResult result) {
+    public String updateEmployee(@PathVariable Long id, @Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
         if (result.hasErrors()) {
             return "updateEmployee";
         }
-        employeeService.updateEmployee(id, updatedEmployee);
+        employeeService.updateEmployee(id, employee);
         return "redirect:/";
     }
 
@@ -73,7 +73,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/findEmployee")
-    public String findEmployee(@ModelAttribute("employee") Employee employee, Model model) {
+    public String findEmployee(@ModelAttribute Employee employee, Model model) {
         Optional<Employee> foundEmployee = employeeService.getEmployeeById(employee.getId());
         model.addAttribute("foundEmployee", foundEmployee.orElse(null));
         return "findEmployee";

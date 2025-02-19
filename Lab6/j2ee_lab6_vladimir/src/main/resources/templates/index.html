@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<h1>Welcome to Lab 6 J2EE!</h1>
+<p th:text="${message}"></p>
+<div align="center">
+    <h3>Enter Login Details</h3>
+    <form action="#" method="post" th:action="@{/login}">
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input name="username" type="text" required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input name="password" type="password" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input name="login" type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <p th:if="${response}" th:text="${response}" style="color:red;"></p>
+    <th:block th:if="${response=='added'}">Please login now !!</th:block>
+    <h3>Click here to register: <a th:href="@{/add}">Create an Account</a></h3>
+</div>
+</body>
+</html>
